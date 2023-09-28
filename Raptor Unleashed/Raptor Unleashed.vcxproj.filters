@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Raptor Unleashed.cpp">
+    <ClCompile Include="src\Raptor Unleashed.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
