@@ -35,3 +35,11 @@
 - MeshComponent
 - MaterialComponent
 - Renderer 🠊 Renders the object using the gameobjects material and mesh
+
+---
+**Math:**
+🠊 all methods and types in a Math class
+- Vectors (2, 3, 4)
+      VectorN 
+      xyzw 
+      rgba
