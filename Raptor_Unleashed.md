@@ -8,24 +8,24 @@
         - array object
           
 - Material
-    - implements shader
+    - implements shader(s)
     - aplies uniforms
 
-- Engine (main file) 
-    🠊 Runs the application from the main file
+- Engine (base of the application -> inherit from here for the Game (or app) class)
 
 - GameObject
-    - Transform (needed) 🠊 Vector3
+    - Transform (needed) 🠊 Vector3 (or Vector4 -> quaternion)
         - Local and world position
         - Local and world angles (Euler & Quaternion)
         - Local and World scale
         + Getters and Setters
         + Moving in all directions
+        + Vector for all cardinal directions
     - Component array (all components must be set in advance) 🠊 activate or deactivate components when needed
 
 ---
 **Components:**
-- BaseComponent
+- BaseComponent 🠊 all other components inherit from here
   - Awake()
   - Start()
   - Update()
