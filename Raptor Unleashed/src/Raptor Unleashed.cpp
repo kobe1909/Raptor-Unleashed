@@ -4,6 +4,8 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#include "Shader.h"
+
 int main(void) {
     GLFWwindow* window;
 
@@ -23,6 +25,10 @@ int main(void) {
 
     // Sets the background color (values are normalized)
     glClearColor(.8, 0, .8, 1);
+
+    // create shader
+    Shader shader("res/shaders/basicFrag.hlsl", "res/shaders/basicVert.hlsl");
+    shader.Bind();
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window)) {

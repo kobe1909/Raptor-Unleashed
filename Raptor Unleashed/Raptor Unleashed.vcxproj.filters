@@ -21,6 +21,9 @@
     <ClCompile Include="src\components\BaseComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Mesh.h">
@@ -29,5 +32,12 @@
     <ClInclude Include="src\components\BaseComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="res\shaders\basicFrag.hlsl" />
+    <FxCompile Include="res\shaders\basicVert.hlsl" />
   </ItemGroup>
 </Project>
