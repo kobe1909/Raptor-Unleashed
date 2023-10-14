@@ -3,8 +3,7 @@
 
 #include <GLFW/glfw3.h>
 
-int main(void)
-{
+int main(void) {
     GLFWwindow* window;
 
     /* Initialize the library */
@@ -12,9 +11,8 @@ int main(void)
         return -1;
 
     /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-    if (!window)
-    {
+    window = glfwCreateWindow(640, 480, "Raptor Unleashed", NULL, NULL);
+    if (!window) {
         glfwTerminate();
         return -1;
     }
@@ -22,9 +20,11 @@ int main(void)
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
 
+    // Sets the background color (values are normalized)
+    glClearColor(.8, 0, .8, 1);
+
     /* Loop until the user closes the window */
-    while (!glfwWindowShouldClose(window))
-    {
+    while (!glfwWindowShouldClose(window)) {
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
