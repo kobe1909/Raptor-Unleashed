@@ -27,7 +27,7 @@ int main(void) {
     glClearColor(.8, 0, .8, 1);
 
     // create shader
-    Shader shader("res/shaders/basicFrag.hlsl", "res/shaders/basicVert.hlsl");
+    Shader shader("res/shaders/basicFrag.shader", "res/shaders/basicVert.shader");
     shader.Bind();
 
     /* Loop until the user closes the window */

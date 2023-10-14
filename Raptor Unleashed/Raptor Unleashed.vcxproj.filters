@@ -37,7 +37,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="res\shaders\basicFrag.hlsl" />
-    <FxCompile Include="res\shaders\basicVert.hlsl" />
+    <FxCompile Include="res\shaders\basicFrag.shader" />
+    <FxCompile Include="res\shaders\basicVert.shader" />
   </ItemGroup>
 </Project>
