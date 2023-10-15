@@ -25,11 +25,7 @@ int main(void) {
 
     // Sets the background color (values are normalized)
     glClearColor(.8, 0, .8, 1);
-
-    // create shader
-    Shader shader("res/shaders/basicFrag.shader", "res/shaders/basicVert.shader");
-    shader.Bind();
-
+    
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window)) {
         /* Render here */
