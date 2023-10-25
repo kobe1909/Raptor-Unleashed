@@ -155,12 +155,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\components\BaseComponent.cpp" />
+    <ClCompile Include="src\components\BaseComponent\BaseComponent.cpp" />
     <ClCompile Include="src\Raptor Unleashed.cpp" />
+    <ClCompile Include="src\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\components\BaseComponent.h" />
+    <ClInclude Include="src\components\BaseComponent\BaseComponent.h" />
+    <ClInclude Include="src\components\Material\MaterialComponent.h" />
     <ClInclude Include="src\Mesh.h" />
+    <ClInclude Include="src\Renderer.h" />
+    <ClInclude Include="src\Shader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\basicFrag.shader" />
