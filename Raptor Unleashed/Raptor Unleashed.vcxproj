@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="src\components\BaseComponent\BaseComponent.cpp" />
     <ClCompile Include="src\Raptor Unleashed.cpp" />
+    <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
