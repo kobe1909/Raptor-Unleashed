@@ -18,9 +18,9 @@ void Shader::ParseShader() {
 
 
 void Shader::Bind() const {
-	glUseProgram(m_RendererID);
+	//glUseProgram(m_RendererID);
 }
 
 void Shader::UnBind() const {
-	glUseProgram(0);
+	//GLCall(glUseProgram(0));
 }

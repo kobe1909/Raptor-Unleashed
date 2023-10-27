@@ -18,8 +18,14 @@ void Renderer::CreateWindow(
 	unsigned int width, 
 	unsigned int height, 
 	const char* name, 
-	GLFWmonitor *monitor = NULL, 
-	GLFWwindow *share = NULL
+	GLFWmonitor *monitor, 
+	GLFWwindow *share
 ) {
 	window = glfwCreateWindow(width, height, name, monitor, share);
+	if (!window) {
+		glfwTerminate();
+		std::cout << "Window creation failed!";
+	}
+
+	glfwMakeContextCurrent(window);
 }

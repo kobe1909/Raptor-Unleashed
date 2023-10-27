@@ -14,8 +14,13 @@ bool GLLogCall(const char* function, const char* file, int line);
 
 
 class Renderer {
-public:
+private:
 	GLFWwindow* window;
 
+public:
 	void CreateWindow(unsigned int width, unsigned int height, const char* name, GLFWmonitor* monitor = NULL, GLFWwindow* share = NULL);
+
+	GLFWwindow* GetWindow() {
+		return window;
+	}
 };
