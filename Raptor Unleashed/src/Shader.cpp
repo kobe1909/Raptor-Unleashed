@@ -22,5 +22,5 @@ void Shader::Bind() const {
 }
 
 void Shader::UnBind() const {
-	//GLCall(glUseProgram(0));
+	GLCall(glUseProgram(0));
 }

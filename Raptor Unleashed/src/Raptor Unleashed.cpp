@@ -14,6 +14,7 @@ int main(void) {
 
 	// Sets the background color (values are normalized)
 	glClearColor(.8, 0, .8, 1);
+	glUseProgram(0);
 	
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(renderer.GetWindow())) {
