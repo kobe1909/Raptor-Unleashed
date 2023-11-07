@@ -4,7 +4,7 @@
 
 class VertexIndexObject {
 private:
-	unsigned int m_renderID;
+	unsigned int m_rendererID;
 
 public:
 	VertexIndexObject();

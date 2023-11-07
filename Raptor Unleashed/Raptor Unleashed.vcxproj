@@ -178,6 +178,7 @@
     <ClInclude Include="src\Renderer.h" />
     <ClInclude Include="src\Shader.h" />
     <ClInclude Include="src\Transform.h" />
+    <ClInclude Include="src\mesh\VertexBufferLayout.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\basicFrag.shader" />

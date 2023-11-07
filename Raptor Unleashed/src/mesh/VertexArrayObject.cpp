@@ -1,17 +1,17 @@
 #include "VertexArrayObject.h"
 
-VertexArrayObject::VertexArrayObject() {
+VertexArrayObject::VertexArrayObject() : m_rendererID(0) {
 
 }
 
 VertexArrayObject::~VertexArrayObject() {
-
+	GLCall(glDeleteVertexArrays(1, &m_rendererID));
 }
 
 void VertexArrayObject::Bind() const {
-	glBindVertexArray(m_renderID);
+	GLCall(glBindVertexArray(m_rendererID));
 }
 
 void VertexArrayObject::UnBind() const{
-	glBindVertexArray(0);
+	GLCall(glBindVertexArray(0));
 }
