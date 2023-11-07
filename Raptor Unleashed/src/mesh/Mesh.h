@@ -2,17 +2,16 @@
 
 #include <vector>
 
+#include "VertexArrayObject.h"
+#include "VertexBufferObject.h"
+#include "VertexIndexObject.h"
+
 class Mesh {
 private:
-	BufferObject m_bufferObject;
-	IndexObject m_indexObject;
+	VertexBufferObject m_bufferObject;
+	VertexIndexObject m_indexObject;
 	VertexArrayObject m_vertexArrayObject;
 
 public:
 
 };
-
-
-class BufferObject {};
-class IndexObject {};
-class VertexArrayObject {};
