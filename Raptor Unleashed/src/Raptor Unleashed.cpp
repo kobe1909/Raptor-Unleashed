@@ -32,7 +32,7 @@ int main(void) {
 	std::cout << glGetString(GL_VERSION) << std::endl;
 
 	// Sets the background color (values are normalized)
-	glClearColor(.8, 0, .8, 1);
+	//glClearColor(.8, 0, .8, 1);
 	
 	float positions[] = {
 		-.5f, -.5f,
@@ -52,11 +52,21 @@ int main(void) {
 	va.AddBuffer(vb, layout);
 
 	VertexIndexObject ib(indices, 3);
+
+	// Unbind everything
+	va.UnBind();
+	vb.UnBind();
+	ib.UnBind();
 	
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(renderer.GetWindow())) {
 		/* Render here */
-		glClear(GL_COLOR_BUFFER_BIT);
+		GLCall(glClear(GL_COLOR_BUFFER_BIT));
+
+		va.Bind();
+		ib.Bind();
+
+		GLCall(glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr));
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(renderer.GetWindow());
