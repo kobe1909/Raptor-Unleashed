@@ -3,6 +3,7 @@
 #include "../Renderer.h"
 
 #include "VertexBufferObject.h"
+#include "VertexBufferLayout.h"
 
 class VertexArrayObject {
 private:
@@ -12,7 +13,7 @@ public:
 	VertexArrayObject();
 	~VertexArrayObject();
 
-	void AddBuffer(const )
+	void AddBuffer(const VertexBufferObject& vb, const VertexBufferLayout& layout);
 
 	void Bind() const;
 	void UnBind() const;

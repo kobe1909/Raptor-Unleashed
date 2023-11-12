@@ -8,6 +8,11 @@
 
 #include "Renderer.h"
 
+#include "mesh/VertexArrayObject.h"
+#include "mesh/VertexBufferLayout.h"
+#include "mesh/VertexBufferObject.h"
+#include "mesh/VertexIndexObject.h"
+
 int main(void) {
 	Renderer renderer;
 
@@ -28,7 +33,25 @@ int main(void) {
 
 	// Sets the background color (values are normalized)
 	glClearColor(.8, 0, .8, 1);
-	glUseProgram(0);
+	
+	float positions[] = {
+		-.5f, -.5f,
+		 .5f, -.5f,
+		   0,  .5f
+	};
+
+	unsigned int indices[] = {
+		0, 1, 2
+	};
+
+	VertexArrayObject va;
+	VertexBufferObject vb(positions, 3 * 2 * sizeof(float));
+
+	VertexBufferLayout layout;
+	layout.Push<float>(2);
+	va.AddBuffer(vb, layout);
+
+	VertexIndexObject ib(indices, 3);
 	
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(renderer.GetWindow())) {
