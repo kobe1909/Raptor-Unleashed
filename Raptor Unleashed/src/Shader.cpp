@@ -12,6 +12,22 @@ Shader::Shader(const std::string& filepath) : m_FilePath(filepath), m_RendererID
 	m_RendererID = CreateShader(source.VertexSource, source.FragmentSource);
 }
 
+Shader::Shader(const std::string& vertPath, const std::string& fragPath) {
+	std::ifstream vertStream(vertPath);
+	std::ifstream fragStream(fragPath);
+	std::stringstream ss[2];
+	std::string line;
+
+	while (getline(vertStream, line)) {
+		ss[0] << line << '\n';
+	}
+	while (getline(fragStream, line)) {
+		ss[1] << line << '\n';
+	}
+
+	m_RendererID = CreateShader(ss[0].str(), ss[1].str());
+}
+
 Shader::~Shader() {
 	GLCall(glDeleteProgram(m_RendererID));
 }

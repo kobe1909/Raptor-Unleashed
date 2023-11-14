@@ -18,6 +18,7 @@ private:
 
 public:
 	Shader(const std::string& filepath);
+	Shader(const std::string& vertPath, const std::string& fragPath);
 	~Shader();
 
 	void Bind() const;

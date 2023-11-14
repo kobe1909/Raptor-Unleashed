@@ -45,6 +45,9 @@
     <ClCompile Include="src\mesh\VertexIndexObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\mesh\Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\mesh\Mesh.h">
