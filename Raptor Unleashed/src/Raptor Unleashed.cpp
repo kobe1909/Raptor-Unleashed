@@ -12,6 +12,7 @@
 #include "mesh/VertexBufferLayout.h"
 #include "mesh/VertexBufferObject.h"
 #include "mesh/VertexIndexObject.h"
+#include "Shader.h"
 
 int main(void) {
 	Renderer renderer;
@@ -34,10 +35,11 @@ int main(void) {
 	// Sets the background color (values are normalized)
 	//glClearColor(.8, 0, .8, 1);
 	
-	float positions[] = {
-		-.5f, -.5f,
-		 .5f, -.5f,
-		   0,  .5f
+	// x, y, r, g, b
+	float vertices[] = {
+		-.5f, -.5f, 1, 0, 0,
+		 .5f, -.5f, 0, 1, 0,
+		   0,  .5f, 0, 0, 1
 	};
 
 	unsigned int indices[] = {
@@ -45,16 +47,20 @@ int main(void) {
 	};
 
 	VertexArrayObject va;
-	VertexBufferObject vb(positions, 3 * 2 * sizeof(float));
+	VertexBufferObject vb(vertices, 3 * 5 * sizeof(float));
 
 	VertexBufferLayout layout;
 	layout.Push<float>(2);
+	layout.Push<float>(3);
 	va.AddBuffer(vb, layout);
 
 	VertexIndexObject ib(indices, 3);
 
+	Shader shader("res/shaders/Basic.shader");
+
 	// Unbind everything
 	va.UnBind();
+	shader.UnBind();
 	vb.UnBind();
 	ib.UnBind();
 	
@@ -62,6 +68,8 @@ int main(void) {
 	while (!glfwWindowShouldClose(renderer.GetWindow())) {
 		/* Render here */
 		GLCall(glClear(GL_COLOR_BUFFER_BIT));
+
+		shader.Bind();
 
 		va.Bind();
 		ib.Bind();

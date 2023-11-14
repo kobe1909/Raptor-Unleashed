@@ -181,8 +181,9 @@
     <ClInclude Include="src\mesh\VertexBufferLayout.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shaders\basicFrag.shader" />
-    <None Include="res\shaders\basicVert.shader" />
+    <None Include="res\shaders\Basic.shader" />
+    <None Include="res\shaders\basicFrag.frag" />
+    <None Include="res\shaders\basicVert.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

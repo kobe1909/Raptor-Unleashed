@@ -85,7 +85,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shaders\basicFrag.shader" />
-    <None Include="res\shaders\basicVert.shader" />
+    <None Include="res\shaders\basicFrag.frag" />
+    <None Include="res\shaders\basicVert.vert" />
+    <None Include="res\shaders\Basic.shader" />
   </ItemGroup>
 </Project>
