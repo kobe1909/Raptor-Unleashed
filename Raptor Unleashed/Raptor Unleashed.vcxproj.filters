@@ -91,5 +91,6 @@
     <None Include="res\shaders\basicFrag.frag" />
     <None Include="res\shaders\basicVert.vert" />
     <None Include="res\shaders\Basic.shader" />
+    <None Include="src\test.json" />
   </ItemGroup>
 </Project>

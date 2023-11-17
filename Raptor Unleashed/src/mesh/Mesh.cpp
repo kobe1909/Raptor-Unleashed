@@ -5,9 +5,7 @@ Mesh::Mesh(VertexBufferObject vb, VertexIndexObject vi, VertexArrayObject va)
 
 }
 
-Mesh::Mesh(std::string& filePath) {
 
-}
 
 void Mesh::Bind() const {
 	m_arrayObject.Bind();
