@@ -14,8 +14,7 @@ private:
 	VertexArrayObject m_arrayObject;
 
 public:
-	Mesh(VertexBufferObject vb, VertexIndexObject vi, VertexArrayObject va);
-	Mesh(std::string& filePath);
+	Mesh(VertexBufferObject& vb, VertexIndexObject& vi, VertexArrayObject& va);
 
 	void Bind() const;
 	void UnBind() const;
