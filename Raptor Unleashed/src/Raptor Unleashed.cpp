@@ -35,34 +35,43 @@ int main(void) {
 	// Sets the background color (values are normalized)
 	//glClearColor(.8, 0, .8, 1);
 	
-	// x, y, r, g, b
+	// x, y, z, r, g, b
 	float vertices[] = {
-		-.5f, -.5f, 1, 0, 0,
-		 .5f, -.5f, 0, 1, 0,
-		   0,  .5f, 0, 0, 1
+		0, 0, 0,	1, 1, 1,
+		0, 0, 1,	1, 1, 1,
+		0, 1, 0,	1, 1, 1,
+		0, 1, 1,	1, 1, 1,
+		1, 0, 0,	1, 1, 1,
+		1, 0, 1,	1, 1, 1,
+		1, 1, 0,	1, 1, 1,
+		1, 1, 1,	1, 1, 1
 	};
 
 	unsigned int indices[] = {
-		0, 1, 2
+		0, 1, 4,	1, 5, 4,
+		0, 2, 4,	2, 6, 4,
+		0, 2, 1,	1, 2, 3,
+		1, 3, 7,	1, 7, 5,
+		4, 6, 5,	5, 6, 7,
+		2, 3, 6,	3, 7, 6
 	};
 
 	VertexArrayObject va;
-	VertexBufferObject vb(vertices, 3 * 5 * sizeof(float));
+	VertexBufferObject vb(vertices, 8 * 6 * sizeof(float));
 
 	VertexBufferLayout layout;
-	layout.Push<float>(2);
+	layout.Push<float>(3);
 	layout.Push<float>(3);
 	va.AddBuffer(vb, layout);
 
-	VertexIndexObject ib(indices, 3);
+	VertexIndexObject ib(indices, 12);
 
-	Shader shader("res/shaders/Basic.shader");
+	Shader shader("res/shaders/Camera.shader");
 
-	// Unbind everything
-	va.UnBind();
-	shader.UnBind();
-	vb.UnBind();
-	ib.UnBind();
+	shader.SetUniform4f("cameraPosition", 5.f, 0.f, 0.f, 0.f);
+	shader.SetUniform4f("cameraRotation", 0.f, 0.f, 0.f, 0.f);
+	shader.SetUniform4f("displaySurfacePosition", 1.f, 0.f, 0.f, 0.f);
+
 	
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(renderer.GetWindow())) {

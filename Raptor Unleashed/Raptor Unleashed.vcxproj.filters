@@ -92,5 +92,6 @@
     <None Include="res\shaders\basicVert.vert" />
     <None Include="res\shaders\Basic.shader" />
     <None Include="src\test.json" />
+    <None Include="res\shaders\Camera.shader" />
   </ItemGroup>
 </Project>

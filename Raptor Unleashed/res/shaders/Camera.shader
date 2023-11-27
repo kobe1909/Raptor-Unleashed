@@ -25,7 +25,8 @@ void main() {
     projection.x = ((displaySurfacePosition.z) / d.z) * d.x + displaySurfacePosition.x;
     projection.y = ((displaySurfacePosition.z) / d.x) * d.y + displaySurfacePosition.y;
     
-    gl_Position = vec4(projection.xy, 0, 0);
+    gl_Position = vec4(projection.xy, 1, 1);
+    vertexColor = color;
 }
 
 

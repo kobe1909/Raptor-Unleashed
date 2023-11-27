@@ -185,6 +185,7 @@
     <None Include="res\shaders\Basic.shader" />
     <None Include="res\shaders\basicFrag.frag" />
     <None Include="res\shaders\basicVert.vert" />
+    <None Include="res\shaders\Camera.shader" />
     <None Include="src\test.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
