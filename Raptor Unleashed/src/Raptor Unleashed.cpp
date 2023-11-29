@@ -12,6 +12,7 @@
 #include "mesh/VertexBufferLayout.h"
 #include "mesh/VertexBufferObject.h"
 #include "mesh/VertexIndexObject.h"
+#include "mesh/Mesh.h"
 #include "Shader.h"
 
 int main(void) {
@@ -56,15 +57,11 @@ int main(void) {
 		2, 3, 6,	3, 7, 6
 	};
 
-	VertexArrayObject va;
-	VertexBufferObject vb(vertices, 8 * 6 * sizeof(float));
-
 	VertexBufferLayout layout;
 	layout.Push<float>(3);
 	layout.Push<float>(3);
-	va.AddBuffer(vb, layout);
 
-	VertexIndexObject ib(indices, 12);
+	Mesh mesh(vertices, 8 * 6 * sizeof(float), layout, indices, 12);
 
 	Shader shader("res/shaders/Camera.shader");
 
@@ -80,10 +77,9 @@ int main(void) {
 
 		shader.Bind();
 
-		va.Bind();
-		ib.Bind();
+		mesh.Bind();
 
-		GLCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
+		GLCall(glDrawElements(GL_TRIANGLES, mesh.GetTriangleCount(), GL_UNSIGNED_INT, nullptr));
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(renderer.GetWindow());

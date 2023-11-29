@@ -15,6 +15,9 @@ private:
 
 public:
 	Mesh(VertexBufferObject& vb, VertexIndexObject& vi, VertexArrayObject& va);
+	Mesh(const void* vertices, unsigned int verticesSize, VertexBufferLayout& layout, const unsigned int* triangleData, unsigned int triangleCount);
+
+	unsigned int GetTriangleCount();
 
 	void Bind() const;
 	void UnBind() const;
