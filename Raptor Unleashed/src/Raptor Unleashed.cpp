@@ -33,7 +33,7 @@ int main(void) {
 	std::cout << glGetString(GL_VERSION) << std::endl;
 
 	// Sets the background color (values are normalized)
-	//glClearColor(.8, 0, .8, 1);
+	glClearColor(.8, 0, .8, 1);
 	
 	// x, y, z, r, g, b
 	float vertices[] = {
@@ -50,7 +50,7 @@ int main(void) {
 	unsigned int indices[] = {
 		0, 1, 4,	1, 5, 4,
 		0, 2, 4,	2, 6, 4,
-		0, 2, 1,	1, 2, 3,
+		0, 2, 1,	1, 3, 2,
 		1, 3, 7,	1, 7, 5,
 		4, 6, 5,	5, 6, 7,
 		2, 3, 6,	3, 7, 6
@@ -68,9 +68,9 @@ int main(void) {
 
 	Shader shader("res/shaders/Camera.shader");
 
-	shader.SetUniform4f("cameraPosition", 5.f, 0.f, 0.f, 0.f);
-	shader.SetUniform4f("cameraRotation", 0.f, 0.f, 0.f, 0.f);
-	shader.SetUniform4f("displaySurfacePosition", 1.f, 0.f, 0.f, 0.f);
+	shader.SetUniform4f("cameraPosition", 0.f, 0.f, 5.f, 0.f);
+	shader.SetUniform4f("cameraRotation", 0.f, 0.f, 1.f, 0.f);
+	shader.SetUniform4f("displaySurfacePosition", 0.f, 0.f, 1.f, 0.f);
 
 	
 	/* Loop until the user closes the window */
@@ -83,7 +83,7 @@ int main(void) {
 		va.Bind();
 		ib.Bind();
 
-		GLCall(glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr));
+		GLCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(renderer.GetWindow());
