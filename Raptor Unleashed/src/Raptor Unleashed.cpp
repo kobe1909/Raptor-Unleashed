@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <vector>
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -13,6 +14,7 @@
 #include "mesh/VertexBufferObject.h"
 #include "mesh/VertexIndexObject.h"
 #include "Shader.h"
+#include "mesh/Mesh.h"
 
 int main(void) {
 	Renderer renderer;
@@ -66,11 +68,13 @@ int main(void) {
 
 	VertexIndexObject ib(indices, 12);
 
-	Shader shader("res/shaders/Camera.shader");
+	Mesh mesh(vb, ib, va);
 
-	shader.SetUniform4f("cameraPosition", 5.f, 0.f, 0.f, 0.f);
-	shader.SetUniform4f("cameraRotation", 0.f, 0.f, 0.f, 0.f);
-	shader.SetUniform4f("displaySurfacePosition", 1.f, 0.f, 0.f, 0.f);
+	Shader shader("res/shaders/Camera.shader"); 
+
+	shader.SetUniform4f("cameraPosition", 0.f, 0.f, 5.f, 0.f);
+	shader.SetUniform4f("cameraRotation", 0.f, 0.f, 1.f, 0.f);
+	shader.SetUniform4f("displaySurfacePosition", 0.f, 0.f, 1.f, 0.f);
 
 	
 	/* Loop until the user closes the window */
@@ -80,10 +84,13 @@ int main(void) {
 
 		shader.Bind();
 
-		va.Bind();
-		ib.Bind();
+		shader.SetUniform4f("cameraPosition", 5.f, 0.f, 0.f, 0.f);
+		shader.SetUniform4f("cameraRotation", 0.f, 0.f, 0.f, 0.f);
+		shader.SetUniform4f("displaySurfacePosition", 1.f, 0.f, 0.f, 0.f);
 
-		GLCall(glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr));
+		mesh.Bind();
+
+		GLCall(glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, nullptr));
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(renderer.GetWindow());

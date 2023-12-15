@@ -8,4 +8,11 @@ Mesh::Mesh(VertexBufferObject& vb, VertexIndexObject& vi, VertexArrayObject& va)
 void Mesh::Bind() const {
 	m_arrayObject.Bind();
 	m_indexObject.Bind();
+	m_bufferObject.Bind();
+}
+
+void Mesh::UnBind() const {
+	m_arrayObject.UnBind();
+	m_indexObject.UnBind();
+	m_bufferObject.UnBind();
 }

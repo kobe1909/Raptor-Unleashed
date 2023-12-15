@@ -18,9 +18,9 @@ void main() {
     float y = position.y - cameraPosition.y;
     float z = position.z - cameraPosition.z;
     
-    d.x = cameraPosition.y * (sin(cameraRotation.z) * y + cos(cameraRotation.z) * x) - sin(cameraRotation.y) * z;
-    d.y = sin(cameraRotation.x) * (cos(cameraRotation.y) * z + sin(cameraRotation.y) * (sin(cameraRotation.z) * y + cos(cameraRotation.z) * x)) + cos(cameraRotation.x) * (cameraRotation.z * y - sin(cameraRotation.z) * x);
-    d.z = cos(cameraRotation.x) * (cos(cameraRotation.y) * z * sin(cameraRotation.y) * (sin(cameraRotation.z) * y + cos(cameraRotation.z) * x)) - sin(cameraRotation.x) * (cameraRotation.z * y - sin(cameraRotation.z) * x);
+    d.x = cos(cameraRotation.y) * (sin(cameraRotation.z) * y + cos(cameraRotation.z) * x) - sin(cameraRotation.y) * z;
+    d.y = sin(cameraRotation.x) * (cos(cameraRotation.y) * z + sin(cameraRotation.y) * (sin(cameraRotation.z) * y + cos(cameraRotation.z) * x)) + cos(cameraRotation.x) * (cos(cameraRotation.z) * y - sin(cameraRotation.z) * x);
+    d.z = cos(cameraRotation.x) * (cos(cameraRotation.y) * z + sin(cameraRotation.y) * (sin(cameraRotation.z) * y + cos(cameraRotation.z) * x)) - sin(cameraRotation.x) * (cos(cameraRotation.z) * y - sin(cameraRotation.z) * x);
     
     projection.x = ((displaySurfacePosition.z) / d.z) * d.x + displaySurfacePosition.x;
     projection.y = ((displaySurfacePosition.z) / d.x) * d.y + displaySurfacePosition.y;
