@@ -13,6 +13,7 @@
 #include "mesh/VertexBufferLayout.h"
 #include "mesh/VertexBufferObject.h"
 #include "mesh/VertexIndexObject.h"
+#include "mesh/Mesh.h"
 #include "Shader.h"
 #include "mesh/Mesh.h"
 
@@ -35,7 +36,7 @@ int main(void) {
 	std::cout << glGetString(GL_VERSION) << std::endl;
 
 	// Sets the background color (values are normalized)
-	//glClearColor(.8, 0, .8, 1);
+	glClearColor(.8, 0, .8, 1);
 	
 	// x, y, z, r, g, b
 	float vertices[] = {
@@ -52,21 +53,17 @@ int main(void) {
 	unsigned int indices[] = {
 		0, 1, 4,	1, 5, 4,
 		0, 2, 4,	2, 6, 4,
-		0, 2, 1,	1, 2, 3,
+		0, 2, 1,	1, 3, 2,
 		1, 3, 7,	1, 7, 5,
 		4, 6, 5,	5, 6, 7,
 		2, 3, 6,	3, 7, 6
 	};
 
-	VertexArrayObject va;
-	VertexBufferObject vb(vertices, 8 * 6 * sizeof(float));
-
 	VertexBufferLayout layout;
 	layout.Push<float>(3);
 	layout.Push<float>(3);
-	va.AddBuffer(vb, layout);
 
-	VertexIndexObject ib(indices, 12);
+	Mesh mesh(vertices, 8 * 6 * sizeof(float), layout, indices, 12);
 
 	Mesh mesh(vb, ib, va);
 
