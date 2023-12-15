@@ -65,8 +65,6 @@ int main(void) {
 
 	Mesh mesh(vertices, 8 * 6 * sizeof(float), layout, indices, 12);
 
-	Mesh mesh(vb, ib, va);
-
 	Shader shader("res/shaders/Camera.shader"); 
 
 	shader.SetUniform4f("cameraPosition", 0.f, 0.f, 5.f, 0.f);
