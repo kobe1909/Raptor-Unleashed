@@ -17,13 +17,15 @@
 #include "Shader.h"
 #include "mesh/Mesh.h"
 
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+
 int main(void) {
 	Renderer renderer;
 
 	/* Initialize the library */
 	if (!glfwInit())
 		return -1;
-
 
 	renderer.CreateWindow(640, 480, "Raptor Unleashed");
 
@@ -36,52 +38,52 @@ int main(void) {
 	std::cout << glGetString(GL_VERSION) << std::endl;
 
 	// Sets the background color (values are normalized)
-	glClearColor(.8, 0, .8, 1);
+	//glClearColor(.8, 0, .8, 1);
 	
 	// x, y, z, r, g, b
 	float vertices[] = {
-		0, 0, 0,	1, 1, 1,
-		0, 0, 1,	1, 1, 1,
+		0, 0, 0,	1, 0, 1,
 		0, 1, 0,	1, 1, 1,
-		0, 1, 1,	1, 1, 1,
-		1, 0, 0,	1, 1, 1,
-		1, 0, 1,	1, 1, 1,
 		1, 1, 0,	1, 1, 1,
-		1, 1, 1,	1, 1, 1
+		1, 0, 0,	1, 1, 1,
+		0, 0, 1,	1, 1, 1,
+		0, 1, 1,	1, 1, 1,
+		1, 1, 1,	1, 1, 1,
+		1, 0, 1,	1, 1, 1
 	};
 
 	unsigned int indices[] = {
-		0, 1, 4,	1, 5, 4,
-		0, 2, 4,	2, 6, 4,
-		0, 2, 1,	1, 3, 2,
-		1, 3, 7,	1, 7, 5,
-		4, 6, 5,	5, 6, 7,
-		2, 3, 6,	3, 7, 6
+		0, 3, 1,	3, 2, 1,
+		0, 1, 4,	4, 1, 5,
+		4, 3, 0,	3, 4, 7,
+		2, 3, 7,	7, 6, 2,
+		4, 5, 7,	7, 5, 6,
+		1, 2, 5,	2, 6, 5
 	};
 
 	VertexBufferLayout layout;
 	layout.Push<float>(3);
 	layout.Push<float>(3);
 
-	Mesh mesh(vertices, 8 * 6 * sizeof(float), layout, indices, 12);
+	Mesh mesh(vertices, 8 * 6 * sizeof(float), layout, indices, 12*3);
 
 	Shader shader("res/shaders/Camera.shader"); 
 
-	shader.SetUniform4f("cameraPosition", 0.f, 0.f, 5.f, 0.f);
-	shader.SetUniform4f("cameraRotation", 0.f, 0.f, 1.f, 0.f);
-	shader.SetUniform4f("displaySurfacePosition", 0.f, 0.f, 1.f, 0.f);
+	glm::mat4 proj = glm::perspective(45.0f, 4.0f / 3.0f, .1f, 30.0f);
+	glm::mat4 view = glm::lookAt(
+		glm::vec3(3, 3, 3), // camera position
+		glm::vec3(0, 0, 0), // camera target
+		glm::vec3(0, 1, 0)  // up direction
+	);
+	glm::mat4 mvp = proj * view;
 
-	
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(renderer.GetWindow())) {
 		/* Render here */
 		GLCall(glClear(GL_COLOR_BUFFER_BIT));
 
 		shader.Bind();
-
-		shader.SetUniform4f("cameraPosition", 5.f, 0.f, 0.f, 0.f);
-		shader.SetUniform4f("cameraRotation", 0.f, 0.f, 0.f, 0.f);
-		shader.SetUniform4f("displaySurfacePosition", 1.f, 0.f, 0.f, 0.f);
+		shader.SetUniformMat4f("u_MVP", mvp);
 
 		mesh.Bind();
 

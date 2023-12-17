@@ -5,10 +5,9 @@ Mesh::Mesh(VertexBufferObject& vb, VertexIndexObject& vi, VertexArrayObject& va)
 
 }
 
-Mesh::Mesh(const void* vertices, unsigned int verticesSize, VertexBufferLayout& layout, const unsigned int* triangles, unsigned int triangleCount) {
-	m_bufferObject = VertexBufferObject(vertices, verticesSize);
-	m_indexObject = VertexIndexObject(triangles, triangleCount);
-	m_arrayObject = VertexArrayObject();
+Mesh::Mesh(const void* vertices, unsigned int verticesSize, VertexBufferLayout& layout, const unsigned int* triangles, unsigned int triangleCount)
+	: m_bufferObject(vertices, verticesSize), m_indexObject(triangles, triangleCount), m_arrayObject()
+{
 	m_arrayObject.AddBuffer(m_bufferObject, layout);
 }
 
