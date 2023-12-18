@@ -39,10 +39,13 @@ int main(void) {
 
 	// Sets the background color (values are normalized)
 	//glClearColor(.8, 0, .8, 1);
+
+	GLCall(glEnable(GL_CULL_FACE));
+	GLCall(glCullFace(GL_FRONT));
 	
 	// x, y, z, r, g, b
 	float vertices[] = {
-		0, 0, 0,	1, 0, 1,
+		0, 0, 0,	1, 1, 1,
 		0, 1, 0,	1, 1, 1,
 		1, 1, 0,	1, 1, 1,
 		1, 0, 0,	1, 1, 1,
@@ -69,7 +72,7 @@ int main(void) {
 
 	Shader shader("res/shaders/Camera.shader"); 
 
-	glm::mat4 proj = glm::perspective(45.0f, 4.0f / 3.0f, .1f, 30.0f);
+	glm::mat4 proj = glm::perspective(45.0f, 4.0f / 3.0f, .01f, 50.0f);
 	glm::mat4 view = glm::lookAt(
 		glm::vec3(3, 3, 3), // camera position
 		glm::vec3(0, 0, 0), // camera target
@@ -87,7 +90,7 @@ int main(void) {
 
 		mesh.Bind();
 
-		GLCall(glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, nullptr));
+		GLCall(glDrawElements(GL_TRIANGLES, mesh.GetTriangleCount(), GL_UNSIGNED_INT, nullptr));
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(renderer.GetWindow());

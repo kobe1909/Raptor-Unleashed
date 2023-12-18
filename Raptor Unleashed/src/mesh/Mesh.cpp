@@ -1,12 +1,12 @@
 #include "Mesh.h"
 
-Mesh::Mesh(VertexBufferObject& vb, VertexIndexObject& vi, VertexArrayObject& va)
-	: m_bufferObject(vb), m_indexObject(vi), m_arrayObject(va) {
+//Mesh::Mesh(VertexBufferObject& vb, VertexIndexObject& vi, VertexArrayObject& va)
+//	: m_bufferObject(vb), m_indexObject(vi), m_arrayObject(va) {
+//
+//}
 
-}
-
-Mesh::Mesh(const void* vertices, unsigned int verticesSize, VertexBufferLayout& layout, const unsigned int* triangles, unsigned int triangleCount)
-	: m_bufferObject(vertices, verticesSize), m_indexObject(triangles, triangleCount), m_arrayObject()
+Mesh::Mesh(const void* vertices, unsigned int verticesSize, VertexBufferLayout& layout, const unsigned int* triangles, unsigned int triangleCount) 
+	: m_arrayObject(), m_bufferObject(vertices, verticesSize), m_indexObject(triangles, triangleCount)
 {
 	m_arrayObject.AddBuffer(m_bufferObject, layout);
 }

@@ -1,6 +1,6 @@
 #include "VertexIndexObject.h"
 
-VertexIndexObject::VertexIndexObject(const unsigned int* data, unsigned int count) : m_rendererID(0), m_count(0) {
+VertexIndexObject::VertexIndexObject(const unsigned int* data, unsigned int count) : m_rendererID(0), m_count(count) {
 	ASSERT(sizeof(unsigned int) == sizeof(GLuint));
 
 	GLCall(glGenBuffers(1, &m_rendererID));
