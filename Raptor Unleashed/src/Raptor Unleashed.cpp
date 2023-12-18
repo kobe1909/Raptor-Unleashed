@@ -45,32 +45,65 @@ int main(void) {
 	
 	// x, y, z, r, g, b
 	float vertices[] = {
-		0, 0, 0,	1, 1, 1,
-		0, 1, 0,	1, 1, 1,
-		1, 1, 0,	1, 1, 1,
-		1, 0, 0,	1, 1, 1,
-		0, 0, 1,	1, 1, 1,
-		0, 1, 1,	1, 1, 1,
-		1, 1, 1,	1, 1, 1,
-		1, 0, 1,	1, 1, 1
+		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+
+		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+		 0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+
+		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+		-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+		-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+
+		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+		 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+		 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+
+		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+		 0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+		 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+		 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+
+		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+		 0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
 	};
 
 	unsigned int indices[] = {
-		0, 3, 1,	3, 2, 1,
-		0, 1, 4,	4, 1, 5,
-		4, 3, 0,	3, 4, 7,
-		2, 3, 7,	7, 6, 2,
-		4, 5, 7,	7, 5, 6,
-		1, 2, 5,	2, 6, 5
+		0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35
 	};
 
 	VertexBufferLayout layout;
 	layout.Push<float>(3);
 	layout.Push<float>(3);
 
-	Mesh mesh(vertices, 8 * 6 * sizeof(float), layout, indices, 12*3);
+	Mesh mesh(vertices, 36 * 6 * sizeof(float), layout, indices, 12*3);
 
 	Shader shader("res/shaders/Camera.shader"); 
+
+	shader.Bind();
+	shader.SetUniform3f("LightColor", 0.5f, 0.0f, 0.0f);
+	shader.SetUniform3f("lightPos", 3.0f, 0.0f, 0.0f);
+	shader.SetUniform3f("objectColor", 1.0f, 1.0f, 1.0f);
 
 	glm::mat4 proj = glm::perspective(45.0f, 4.0f / 3.0f, .01f, 50.0f);
 	glm::mat4 view = glm::lookAt(
@@ -86,7 +119,9 @@ int main(void) {
 		GLCall(glClear(GL_COLOR_BUFFER_BIT));
 
 		shader.Bind();
-		shader.SetUniformMat4f("u_MVP", mvp);
+		shader.SetUniformMat4f("Model", glm::mat4(1.0f));
+		shader.SetUniformMat4f("View", view);
+		shader.SetUniformMat4f("Proj", proj);
 
 		mesh.Bind();
 
