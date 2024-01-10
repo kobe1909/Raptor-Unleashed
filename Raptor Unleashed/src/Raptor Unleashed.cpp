@@ -20,6 +20,8 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
+#include "GameObject.h"
+
 int main(void) {
 	Renderer renderer;
 
@@ -27,7 +29,8 @@ int main(void) {
 	if (!glfwInit())
 		return -1;
 
-	renderer.CreateWindow(640, 480, "Raptor Unleashed");
+	glm::vec2 windowSize(960, 720);
+	renderer.CreateWindow(windowSize.x, windowSize.y, "Raptor Unleashed");
 
 	// Limit the framerate to the vsync
 	glfwSwapInterval(1);
@@ -40,8 +43,9 @@ int main(void) {
 	// Sets the background color (values are normalized)
 	//glClearColor(.8, 0, .8, 1);
 
-	GLCall(glEnable(GL_CULL_FACE));
-	GLCall(glCullFace(GL_FRONT));
+	//GLCall(glEnable(GL_CULL_FACE));
+	//GLCall(glCullFace(GL_FRONT));
+	GLCall(glEnable(GL_DEPTH_TEST));
 	
 	// x, y, z, r, g, b
 	float vertices[] = {
@@ -101,27 +105,43 @@ int main(void) {
 	Shader shader("res/shaders/Camera.shader"); 
 
 	shader.Bind();
-	shader.SetUniform3f("LightColor", 0.5f, 0.0f, 0.0f);
-	shader.SetUniform3f("lightPos", 3.0f, 0.0f, 0.0f);
-	shader.SetUniform3f("objectColor", 1.0f, 1.0f, 1.0f);
+	shader.SetUniform3f("LightColor", 0.0f, 0.0f, 0.5f);
+	shader.SetUniform3f("lightPos", 1.2f, 1.0f, 2.0f);
+	shader.SetUniform3f("objectColor", 1.0f, 0.5f, 0.5f);
+	shader.SetUniform3f("cameraPos", 2.0f, 2.0f, 2.0f);
 
-	glm::mat4 proj = glm::perspective(45.0f, 4.0f / 3.0f, .01f, 50.0f);
+	glm::mat4 proj = glm::perspective(45.0f, windowSize.x / windowSize.y, .01f, 50.0f);
 	glm::mat4 view = glm::lookAt(
-		glm::vec3(3, 3, 3), // camera position
-		glm::vec3(0, 0, 0), // camera target
-		glm::vec3(0, 1, 0)  // up direction
+		glm::vec3(2.0f, 2.0f, 2.0f), // camera position
+		glm::vec3(0.0f, 0.0f, 0.0f), // camera target
+		glm::vec3(0.0f, 1.0f, 0.0f)  // up direction
 	);
-	glm::mat4 mvp = proj * view;
+
+	float angle = 0.0f;
+
+	double lastTime = 0.0;
+
+	GameObject cube(Transform(), {
+
+	});
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(renderer.GetWindow())) {
+		double deltaTime = lastTime - glfwGetTime();
+		lastTime = glfwGetTime();
+
 		/* Render here */
-		GLCall(glClear(GL_COLOR_BUFFER_BIT));
+		GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
 		shader.Bind();
-		shader.SetUniformMat4f("Model", glm::mat4(1.0f));
+		glm::mat4 model = glm::rotate(glm::mat4(1.0f), glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f));
+		shader.SetUniformMat4f("Model", model);
 		shader.SetUniformMat4f("View", view);
 		shader.SetUniformMat4f("Proj", proj);
+
+		angle -= 20.0f * deltaTime;
+		if (angle > -360.0f)
+			angle += 360.0f;
 
 		mesh.Bind();
 

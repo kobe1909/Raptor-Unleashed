@@ -7,7 +7,8 @@
 class GameObject {
 public:
 	std::vector<BaseComponent> components;
+	Transform transform;
 
-	GameObject(Transform transform);
+	GameObject(Transform transform, std::vector<BaseComponent> components);
 };
 

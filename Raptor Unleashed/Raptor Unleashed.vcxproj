@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -155,9 +155,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\components\Material\MaterialComponent.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\components\BaseComponent\BaseComponent.cpp" />
-    <ClCompile Include="src\Math.cpp" />
     <ClCompile Include="src\mesh\Mesh.cpp" />
     <ClCompile Include="src\mesh\VertexArrayObject.cpp" />
     <ClCompile Include="src\mesh\VertexBufferObject.cpp" />
@@ -172,7 +172,6 @@
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\components\BaseComponent\BaseComponent.h" />
     <ClInclude Include="src\components\Material\MaterialComponent.h" />
-    <ClInclude Include="src\Math.h" />
     <ClInclude Include="src\mesh\VertexBufferObject.h" />
     <ClInclude Include="src\mesh\Mesh.h" />
     <ClInclude Include="src\mesh\VertexArrayObject.h" />
