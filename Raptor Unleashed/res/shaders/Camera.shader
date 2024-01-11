@@ -16,6 +16,7 @@ void main() {
     FragPos = vec3(Model * vec4(position, 1.0));
     normal = mat3(transpose(inverse(Model))) * inNormal;
     gl_Position = Proj * View * vec4(FragPos, 1.0);
+    
 }
 
 
@@ -23,35 +24,47 @@ void main() {
 #shader fragment
 #version 330 core
 
+struct Material {
+    vec3 ambient;
+    vec3 diffuse;
+    vec3 specular;
+    float shininess;
+};
+
+struct Light {
+    vec3 position;
+
+    vec3 ambient;
+    vec3 diffuse;
+    vec3 specular;
+};
+
 layout(location = 0) out vec4 color;
 
-uniform vec3 LightColor;
-uniform vec3 lightPos;
-uniform vec3 objectColor;
 uniform vec3 cameraPos;
+
+uniform Material material;
+uniform Light light;
 
 in vec3 normal;
 in vec3 FragPos;
 
 void main() {
     // ambient
-    float ambientStrength = 0.5;
-    vec3 ambient = ambientStrength * LightColor;
+    vec3 ambient = light.ambient * material.ambient;
     
     // diffuse
     vec3 norm = normalize(normal);
-    vec3 lightDir = normalize(lightPos - FragPos);
+    vec3 lightDir = normalize(light.position - FragPos);
     float diff = max(dot(norm, lightDir), 0.0);
-    vec3 diffuse = diff * LightColor;
+    vec3 diffuse = light.diffuse * (diff * material.diffuse);
     
     // specular
-    float specularStrength = 0.5;
-    float shininess = 32;
     vec3 viewDir = normalize(cameraPos - FragPos);
     vec3 reflectDir = reflect(-lightDir, norm);
-    float spec = pow(max(dot(viewDir, reflectDir), 0.0), shininess);
-    vec3 specular = specularStrength * spec * LightColor;
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
+    vec3 specular = light.specular * (spec * material.specular);
     
-    vec3 result = (ambient + diffuse + specular) * objectColor;
+    vec3 result = ambient + diffuse + specular;
     color = vec4(result, 1.0);
 };

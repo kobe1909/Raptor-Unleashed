@@ -155,7 +155,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\components\Material\MaterialComponent.cpp" />
+    <ClCompile Include="src\components\MeshComponent\MeshComponent.cpp" />
+    <ClCompile Include="src\Scene.cpp" />
+    <ClCompile Include="src\components\MaterialComponent\MaterialComponent.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\components\BaseComponent\BaseComponent.cpp" />
     <ClCompile Include="src\mesh\Mesh.cpp" />
@@ -167,11 +169,14 @@
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\Transform.cpp" />
     <ClCompile Include="src\ventor\glm\detail\glm.cpp" />
+    <ClCompile Include="src\ventor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\components\MeshComponent\MeshComponent.h" />
+    <ClInclude Include="src\Scene.h" />
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\components\BaseComponent\BaseComponent.h" />
-    <ClInclude Include="src\components\Material\MaterialComponent.h" />
+    <ClInclude Include="src\components\MaterialComponent\MaterialComponent.h" />
     <ClInclude Include="src\mesh\VertexBufferObject.h" />
     <ClInclude Include="src\mesh\Mesh.h" />
     <ClInclude Include="src\mesh\VertexArrayObject.h" />
@@ -462,6 +467,7 @@
     <ClInclude Include="src\ventor\glm\vec3.hpp" />
     <ClInclude Include="src\ventor\glm\vec4.hpp" />
     <ClInclude Include="src\ventor\glm\vector_relational.hpp" />
+    <ClInclude Include="src\ventor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\Camera.shader" />
