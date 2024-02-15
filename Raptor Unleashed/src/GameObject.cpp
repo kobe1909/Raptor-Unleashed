@@ -19,3 +19,8 @@ BaseComponent* GameObject::GetComponent(std::string name) {
 
 	return NULL;
 }
+
+template <typename T>
+T GameObject::GetComponent(std::string name) {
+	return static_cast<T>(map.find(name));
+}

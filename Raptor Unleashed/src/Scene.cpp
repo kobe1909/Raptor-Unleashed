@@ -21,7 +21,7 @@ GameObject Scene::GetObject(std::string name) {
 void Scene::Render() {
 	for (std::tuple<std::string, GameObject> item : m_Objects) {
 		GameObject object = std::get<1>(item);
-		MeshComponent meshComponent = *reinterpret_cast<MeshComponent*>(object.GetComponent("Mesh"));
-		MaterialComponent materialComponent = *reinterpret_cast<MaterialComponent*>(object.GetComponent("Material"));
+		MeshComponent meshComponent = object.GetComponent<MeshComponent>("Mesh");
+		MaterialComponent materialComponent = object.GetComponent<MaterialComponent>("Material");
 	}
 }
