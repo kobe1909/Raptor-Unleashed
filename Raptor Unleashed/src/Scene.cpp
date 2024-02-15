@@ -1,6 +1,6 @@
 #include "Scene.h"
 
-Scene::Scene(std::vector<std::tuple<std::string, GameObject>> objects)
+Scene::Scene(std::map<std::string, GameObject> objects)
  : m_Objects(objects) {
 
 }
@@ -10,18 +10,18 @@ Scene::~Scene() {
 }
 
 GameObject Scene::GetObject(std::string name) {
-	for (int i = 0; i < m_Objects.size(); i++) {
-		std::tuple<std::string, GameObject> item = m_Objects[i];
-		if (std::get<0>(item) == name) {
-			return std::get<1>(item);
-		}
-	}
+	return m_Objects[name];
+}
+
+void Scene::AddObject(std::string name, GameObject gameObject) {
+	m_Objects.insert({ name, gameObject });
 }
 
 void Scene::Render() {
-	for (std::tuple<std::string, GameObject> item : m_Objects) {
-		GameObject object = std::get<1>(item);
-		MeshComponent meshComponent = object.GetComponent<MeshComponent>("Mesh");
-		MaterialComponent materialComponent = object.GetComponent<MaterialComponent>("Material");
+	for (auto const& x : m_Objects) {
+		std::string name = x.first;
+		GameObject gameObject = x.second;
+		
+		gameObject.Render();
 	}
 }

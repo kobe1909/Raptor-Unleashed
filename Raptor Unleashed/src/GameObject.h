@@ -1,8 +1,6 @@
 #pragma once
 
-#include <tuple>
 #include <string>
-#include <vector>
 #include <map>
 #include "components/BaseComponent/BaseComponent.h"
 #include "Transform.h"
@@ -11,18 +9,14 @@
 
 class GameObject {
 private:
-	std::vector<std::tuple<std::string, BaseComponent>> m_Components;
-
-	std::map<std::string, BaseComponent*> map;
+	std::map<std::string, BaseComponent*> m_Components;
 
 public:
 	Transform transform;
-	GameObject(Transform transform, std::vector<std::tuple<std::string, BaseComponent>> components);
+	GameObject(Transform transform, std::map<std::string, BaseComponent*> components);
 	~GameObject();
 
 	template <typename T>
 	T GetComponent(std::string name);
-
-	BaseComponent* GetComponent(std::string name);
 };
 
