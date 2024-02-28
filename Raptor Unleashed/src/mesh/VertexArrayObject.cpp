@@ -1,7 +1,12 @@
 #include "VertexArrayObject.h"
+#include <iostream>
 
 VertexArrayObject::VertexArrayObject() : m_rendererID(0) {
 	GLCall(glGenVertexArrays(1, &m_rendererID));
+}
+
+VertexArrayObject::VertexArrayObject(const VertexArrayObject& other) {
+	m_rendererID = other.m_rendererID;
 }
 
 VertexArrayObject::~VertexArrayObject() {
@@ -25,6 +30,7 @@ void VertexArrayObject::AddBuffer(const VertexBufferObject& vb, const VertexBuff
 }
 
 void VertexArrayObject::Bind() const {
+	std::cout << "Array Object RenderID: " << m_rendererID << std::endl;
 	GLCall(glBindVertexArray(m_rendererID));
 }
 

@@ -14,9 +14,12 @@ private:
 public:
 	Transform transform;
 	GameObject(Transform transform, std::map<std::string, BaseComponent*> components);
+	GameObject();
 	~GameObject();
 
 	template <typename T>
 	T GetComponent(std::string name);
+
+	void Render();
 };
 

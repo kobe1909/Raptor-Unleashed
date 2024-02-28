@@ -11,6 +11,7 @@ private:
 
 public:
 	VertexArrayObject();
+	VertexArrayObject(const VertexArrayObject& other);
 	~VertexArrayObject();
 
 	void AddBuffer(const VertexBufferObject& vb, const VertexBufferLayout& layout);

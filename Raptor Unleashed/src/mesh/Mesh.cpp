@@ -1,4 +1,5 @@
 #include "Mesh.h"
+#include <iostream>
 
 //Mesh::Mesh(VertexBufferObject& vb, VertexIndexObject& vi, VertexArrayObject& va)
 //	: m_bufferObject(vb), m_indexObject(vi), m_arrayObject(va) {
@@ -10,6 +11,10 @@ Mesh::Mesh(const void* vertices, unsigned int verticesSize, VertexBufferLayout& 
 {
 	m_arrayObject.AddBuffer(m_bufferObject, layout);
 }
+
+Mesh::Mesh(const Mesh& other) 
+	: m_arrayObject(other.m_arrayObject), m_bufferObject(other.m_bufferObject), m_indexObject(other.m_indexObject)
+{}
 
 unsigned int Mesh::GetTriangleCount() {
 	return m_indexObject.GetCount();

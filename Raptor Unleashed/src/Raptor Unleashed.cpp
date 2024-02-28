@@ -133,11 +133,12 @@ int main(void) {
 	double lastTime = 0.0;
 
 	Scene scene({
-		std::make_tuple("cube", GameObject(
-			Transform(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(0, 0, 0)), 
+		std::pair<std::string, GameObject>("Cube", GameObject(
+			Transform(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1, 1, 1)),
 			{
-				//std::make_tuple("mesh", MeshComponent(mesh))
-		}))
+				std::pair<std::string, BaseComponent*>("Mesh", new MeshComponent(mesh))
+			}
+		))
 	});
 
 	/* Loop until the user closes the window */
@@ -157,10 +158,12 @@ int main(void) {
 		angle -= 20.0f * deltaTime;
 		if (angle > -360.0f)
 			angle += 360.0f;
- 
-		mesh.Bind();
 
-		GLCall(glDrawElements(GL_TRIANGLES, mesh.GetTriangleCount(), GL_UNSIGNED_INT, nullptr));
+		scene.Render();
+ 
+		//mesh.Bind();
+
+		//GLCall(glDrawElements(GL_TRIANGLES, mesh.GetTriangleCount(), GL_UNSIGNED_INT, nullptr));
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(renderer.GetWindow());
