@@ -20,8 +20,8 @@ void Scene::Destroy() {
 	callVector(onDestroy);
 }
 
-void Scene::callVector(std::vector<void (*)()> vec) {
+void Scene::callVector(std::vector<void (BaseObject::*)()> vec) {
 	for (auto& element : vec) {
-		element();
+		d -> element();
 	}
 }

@@ -4,11 +4,11 @@
 
 class Scene {
 public:
-	std::vector<void (*)()> onAwake   = {};
-	std::vector<void (*)()> onStart   = {};
-	std::vector<void (*)()> onUpdate  = {};
-	std::vector<void (*)()> onDraw    = {};
-	std::vector<void (*)()> onDestroy = {};
+	std::vector<void (BaseObject::*)()> onAwake   = {};
+	std::vector<void (BaseObject::*)()> onStart   = {};
+	std::vector<void (BaseObject::*)()> onUpdate  = {};
+	std::vector<void (BaseObject::*)()> onDraw    = {};
+	std::vector<void (BaseObject::*)()> onDestroy = {};
 
 	void Awake  ();
 	void Start  ();
@@ -16,6 +16,8 @@ public:
 	void Draw   ();
 	void Destroy();
 
+
+
 private:
-	void callVector(std::vector<void (*)()>);
+	void callVector(std::vector<void (BaseObject::*)()>);
 };

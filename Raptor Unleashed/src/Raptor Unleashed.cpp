@@ -15,13 +15,10 @@
 #include "mesh/VertexIndexObject.h"
 #include "mesh/Mesh.h"
 #include "Shader.h"
-#include "mesh/Mesh.h"
-#include "components/MeshComponent/MeshComponent.h"
 
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
-#include "GameObject.h"
 #include "Scene.h"
 
 #include <tuple>
@@ -132,14 +129,10 @@ int main(void) {
 
 	double lastTime = 0.0;
 
-	Scene scene({
-		std::pair<std::string, GameObject>("Cube", GameObject(
-			Transform(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1, 1, 1)),
-			{
-				std::pair<std::string, BaseComponent*>("Mesh", mesh.ToMeshComponent())
-			}
-		))
-	});
+	Scene scene;
+
+	scene.Awake();
+	scene.Start();
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(renderer.GetWindow())) {
@@ -159,11 +152,12 @@ int main(void) {
 		if (angle > -360.0f)
 			angle += 360.0f;
 
-		scene.Render();
+		scene.Update();
+		scene.Draw();
  
-		//mesh.Bind();
+		mesh.Bind();
 
-		//GLCall(glDrawElements(GL_TRIANGLES, mesh.GetTriangleCount(), GL_UNSIGNED_INT, nullptr));
+		GLCall(glDrawElements(GL_TRIANGLES, mesh.GetTriangleCount(), GL_UNSIGNED_INT, nullptr));
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(renderer.GetWindow());
@@ -173,5 +167,6 @@ int main(void) {
 	}
 
 	glfwTerminate();
+	scene.Destroy();
 	return 0;
 }
