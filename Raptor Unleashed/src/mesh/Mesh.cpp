@@ -20,6 +20,11 @@ unsigned int Mesh::GetTriangleCount() {
 	return m_indexObject.GetCount();
 }
 
+MeshComponent* Mesh::ToMeshComponent() {
+	MeshComponent component(*this);
+	return &component;
+}
+
 void Mesh::Bind() const {
 	m_arrayObject.Bind();
 	m_indexObject.Bind();

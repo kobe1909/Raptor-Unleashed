@@ -136,7 +136,7 @@ int main(void) {
 		std::pair<std::string, GameObject>("Cube", GameObject(
 			Transform(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1, 1, 1)),
 			{
-				std::pair<std::string, BaseComponent*>("Mesh", new MeshComponent(mesh))
+				std::pair<std::string, BaseComponent*>("Mesh", mesh.ToMeshComponent())
 			}
 		))
 	});

@@ -1,20 +1,20 @@
 #pragma once
-
-#include <map>
-#include <tuple>
-#include <string>
-#include "GameObject.h"
+#include <vector>
 
 class Scene {
-private:
-	std::map<std::string, GameObject> m_Objects;
-
 public:
-	Scene(std::map<std::string, GameObject> objects);
-	~Scene();
+	std::vector<void (*)()> onAwake   = {};
+	std::vector<void (*)()> onStart   = {};
+	std::vector<void (*)()> onUpdate  = {};
+	std::vector<void (*)()> onDraw    = {};
+	std::vector<void (*)()> onDestroy = {};
 
-	GameObject GetObject(std::string name);
-	void AddObject(std::string name, GameObject gameObject);
+	void Awake  ();
+	void Start  ();
+	void Update ();
+	void Draw   ();
+	void Destroy();
 
-	void Render();
+private:
+	void callVector(std::vector<void (*)()>);
 };

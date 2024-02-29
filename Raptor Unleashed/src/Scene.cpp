@@ -1,27 +1,27 @@
 #include "Scene.h"
 
-Scene::Scene(std::map<std::string, GameObject> objects)
- : m_Objects(objects) {
-
+void Scene::Awake() {
+	callVector(onAwake);
 }
 
-Scene::~Scene() {
-	m_Objects.clear();
+void Scene::Start() {
+	callVector(onStart);
 }
 
-GameObject Scene::GetObject(std::string name) {
-	return m_Objects[name];
+void Scene::Update() {
+	callVector(onUpdate);
 }
 
-void Scene::AddObject(std::string name, GameObject gameObject) {
-	m_Objects.insert({ name, gameObject });
+void Scene::Draw() {
+	callVector(onDraw);
 }
 
-void Scene::Render() {
-	for (auto const& x : m_Objects) {
-		std::string name = x.first;
-		GameObject gameObject = x.second;
-		
-		gameObject.Render();
+void Scene::Destroy() {
+	callVector(onDestroy);
+}
+
+void Scene::callVector(std::vector<void (*)()> vec) {
+	for (auto& element : vec) {
+		element();
 	}
 }

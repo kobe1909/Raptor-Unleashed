@@ -6,6 +6,7 @@
 #include "VertexBufferObject.h"
 #include "VertexIndexObject.h"
 #include "VertexBufferLayout.h"
+#include "../components/MeshComponent/MeshComponent.h"
 
 class Mesh {
 private:
@@ -19,6 +20,7 @@ public:
 	Mesh(const Mesh& other);
 
 	unsigned int GetTriangleCount();
+	MeshComponent* ToMeshComponent();
 
 	void Bind() const;
 	void UnBind() const;

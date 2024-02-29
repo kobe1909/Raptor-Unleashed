@@ -155,8 +155,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\BaseObject.cpp" />
     <ClCompile Include="src\components\MeshComponent\MeshComponent.cpp" />
-    <ClCompile Include="src\Scene.cpp" />
     <ClCompile Include="src\components\MaterialComponent\MaterialComponent.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\components\BaseComponent\BaseComponent.cpp" />
@@ -166,25 +166,27 @@
     <ClCompile Include="src\mesh\VertexIndexObject.cpp" />
     <ClCompile Include="src\Raptor Unleashed.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
+    <ClCompile Include="src\Scene.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\Transform.cpp" />
     <ClCompile Include="src\ventor\glm\detail\glm.cpp" />
     <ClCompile Include="src\ventor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\BaseObject.h" />
     <ClInclude Include="src\components\MeshComponent\MeshComponent.h" />
-    <ClInclude Include="src\Scene.h" />
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\components\BaseComponent\BaseComponent.h" />
     <ClInclude Include="src\components\MaterialComponent\MaterialComponent.h" />
-    <ClInclude Include="src\mesh\VertexBufferObject.h" />
     <ClInclude Include="src\mesh\Mesh.h" />
     <ClInclude Include="src\mesh\VertexArrayObject.h" />
+    <ClInclude Include="src\mesh\VertexBufferLayout.h" />
+    <ClInclude Include="src\mesh\VertexBufferObject.h" />
     <ClInclude Include="src\mesh\VertexIndexObject.h" />
     <ClInclude Include="src\Renderer.h" />
+    <ClInclude Include="src\Scene.h" />
     <ClInclude Include="src\Shader.h" />
     <ClInclude Include="src\Transform.h" />
-    <ClInclude Include="src\mesh\VertexBufferLayout.h" />
     <ClInclude Include="src\ventor\glm\common.hpp" />
     <ClInclude Include="src\ventor\glm\detail\compute_common.hpp" />
     <ClInclude Include="src\ventor\glm\detail\compute_vector_relational.hpp" />
