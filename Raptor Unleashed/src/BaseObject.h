@@ -1,25 +1,13 @@
 #pragma once
+#include "../Scene.h"
 
-
-#include <map>
-
-
-// BaseObject Interface
 class BaseObject {
-};
-
-class Player : public BaseObject {
 public:
-	int shader;
-	int mesh;
-public:
-	Player(int shader, int mesh) : shader(shader), mesh(mesh) {
+	void AddToScene(Scene scene);
 
-	}
-	void Awake() {}
-	void Start() {}
-	void Update() {}
-	void Destroy() {}
-	void Draw() {}
+	void OnAwake () {};
+	virtual void OnStart () = 0;
+	virtual void OnUpdate() = 0;
+	virtual void OnDraw  () = 0;
+	virtual void OnUpdate() = 0;
 };
-
