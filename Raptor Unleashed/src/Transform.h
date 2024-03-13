@@ -1,10 +1,9 @@
 #pragma once
 
-#include "components/BaseComponent/BaseComponent.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
-class Transform : public BaseComponent {
+class Transform {
 public:
 	glm::vec3 position;
 	glm::vec3 rotation;

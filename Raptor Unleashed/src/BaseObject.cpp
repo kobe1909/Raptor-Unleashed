@@ -8,14 +8,3 @@ void BaseObject::AddToScene(Scene scene) {
 	scene.onDraw.push_back(pointer);
 	scene.onDestroy.push_back(pointer);
 }
-
-class Player : public BaseObject {
-	Player(Scene scene) {
-		AddToScene(scene);
-	}
-	void OnAwake  () {}
-	void OnStart  () {}
-	void OnUpdate () {}
-	void OnDraw   () {}
-	void OnDestroy() {}
-};

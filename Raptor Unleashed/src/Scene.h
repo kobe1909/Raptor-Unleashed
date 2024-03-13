@@ -1,17 +1,16 @@
 #pragma once
 #include <vector>
-#include <map>
 #include "BaseObject.h"
 
 typedef std::vector<BaseObject*> funcArray;
 
 class Scene {
 public:
-	funcArray onAwake   = {};
-	funcArray onStart   = {};
-	funcArray onUpdate  = {};
-	funcArray onDraw    = {};
-	funcArray onDestroy = {};
+	std::vector<BaseObject*> onAwake   = {};
+	std::vector<BaseObject*> onStart = {};
+	std::vector<BaseObject*> onUpdate = {};
+	std::vector<BaseObject*> onDraw = {};
+	std::vector<BaseObject*> onDestroy = {};
 
 	void Awake  ();
 	void Start  ();
