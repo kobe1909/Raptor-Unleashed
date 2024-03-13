@@ -1,27 +1,31 @@
 #include "Scene.h"
 
 void Scene::Awake() {
-	callVector(onAwake);
+	for (auto& element : onAwake) {
+		element->OnAwake();
+	}
 }
 
 void Scene::Start() {
-	callVector(onStart);
+	for (auto& element : onStart) {
+		element->OnStart();
+	}
 }
 
 void Scene::Update() {
-	callVector(onUpdate);
+	for (auto& element : onUpdate) {
+		element->OnUpdate();
+	}
 }
 
 void Scene::Draw() {
-	callVector(onDraw);
+	for (auto& element : onDraw) {
+		element->OnDraw();
+	}
 }
 
 void Scene::Destroy() {
-	callVector(onDestroy);
-}
-
-void Scene::callVector(std::vector<void (BaseObject::*)()> vec) {
-	for (auto& element : vec) {
-		d -> element();
+	for (auto& element : onDestroy) {
+		element->OnDestroy();
 	}
 }

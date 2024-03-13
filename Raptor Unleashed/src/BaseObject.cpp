@@ -1,17 +1,12 @@
 #include "BaseObject.h"
 
 void BaseObject::AddToScene(Scene scene) {
-	void (BaseObject::*awake)  () = &OnAwake;
-	void (BaseObject::*start)  () = &OnStart;
-	void (BaseObject::*update) () = &OnUpdate;
-	void (BaseObject::*draw)   () = &OnDraw;
-	void (BaseObject::*destroy)() = &OnDestroy;
-
-	scene.onAwake.push_back(awake);
-	scene.onStart.push_back(start);
-	scene.onUpdate.push_back(update);
-	scene.onDraw.push_back(draw);
-	scene.onDestroy.push_back(destroy);
+	BaseObject* pointer = this;
+	scene.onAwake.push_back(pointer);
+	scene.onStart.push_back(pointer);
+	scene.onUpdate.push_back(pointer);
+	scene.onDraw.push_back(pointer);
+	scene.onDestroy.push_back(pointer);
 }
 
 class Player : public BaseObject {
